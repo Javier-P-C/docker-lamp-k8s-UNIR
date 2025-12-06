@@ -3,10 +3,10 @@ kind: Deployment
 metadata:
   name: web
 spec:
+  replicas: 1
   selector:
     matchLabels:
       app: web
-  replicas: 1
   template:
     metadata:
       labels:
@@ -14,9 +14,25 @@ spec:
     spec:
       containers:
         - name: web
-          image: php:7.4-apache
+          image: jersonmartinez/docker-lamp:latest
           ports:
             - containerPort: 80
           env:
             - name: MYSQL_HOST
               value: mysql
+            - name: MYSQL_USER
+              value: root
+            - name: MYSQL_PASSWORD
+              value: root
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+spec:
+  type: LoadBalancer
+  selector:
+    app: web
+  ports:
+    - port: 80
+      targetPort: 80
