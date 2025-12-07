@@ -4,7 +4,7 @@ metadata:
   name: web
   namespace: lamp
 spec:
-  type: LoadBalancer   # o NodePort, según tu uso
+  type: LoadBalancer
   ports:
     - port: 80
       targetPort: 80
