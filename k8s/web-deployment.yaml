@@ -2,8 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: web
+  namespace: lamp
+  labels:
+    app: web
 spec:
-  replicas: 1
+  replicas: 2   # puedes escalar según necesidad
   selector:
     matchLabels:
       app: web
@@ -14,25 +17,16 @@ spec:
     spec:
       containers:
         - name: web
-          image: jersonmartinez/docker-lamp:latest
+          image: tu-registry/docker-lamp:latest   # cambia por tu imagen en tu fork
           ports:
             - containerPort: 80
           env:
             - name: MYSQL_HOST
-              value: mysql
+              value: "mysql.lamp.svc.cluster.local"
+            - name: MYSQL_DATABASE
+              value: "tu_basedatos"
             - name: MYSQL_USER
-              value: root
+              value: "usuario"
             - name: MYSQL_PASSWORD
-              value: root
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: web
-spec:
-  type: LoadBalancer
-  selector:
-    app: web
-  ports:
-    - port: 80
-      targetPort: 80
+              value: "password"
+          # Si necesitas montar código (volúmenes), revisa configuración de PVC / ConfigMap / git-sync según tu flujo
