@@ -20,7 +20,7 @@ spec:
           image: mysql:8.0
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: "rootpassword"      # cambia según tu .env
+              value: "rootpassword"    
             - name: MYSQL_DATABASE
               value: "tu_basedatos"
             - name: MYSQL_USER

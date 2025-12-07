@@ -9,4 +9,4 @@ spec:
       targetPort: 3306
   selector:
     app: mysql
-  clusterIP: None   # si prefieres StatefulSet; puedes quitar esto si no lo necesitas
+  clusterIP: None 

@@ -6,7 +6,7 @@ metadata:
   labels:
     app: web
 spec:
-  replicas: 2   # puedes escalar según necesidad
+  replicas: 2 
   selector:
     matchLabels:
       app: web
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: tu-registry/docker-lamp:latest   # cambia por tu imagen en tu fork
+          image: javierpc2001/docker-lamp:latest
           ports:
             - containerPort: 80
           env:
@@ -29,4 +29,3 @@ spec:
               value: "usuario"
             - name: MYSQL_PASSWORD
               value: "password"
-          # Si necesitas montar código (volúmenes), revisa configuración de PVC / ConfigMap / git-sync según tu flujo
