@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: javierpc2001/docker-lamp:latest
+          image: javierpc2001/lamp-app:latest
           ports:
             - containerPort: 80
           env:
